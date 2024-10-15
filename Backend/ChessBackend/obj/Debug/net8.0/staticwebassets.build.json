@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "9rWT0eZjlg2mQ1GAyHeL4UjrlpNhNSyI1aoQ71QzbVo=",
+  "Source": "ChessBackApi",
+  "BasePath": "_content/ChessBackApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

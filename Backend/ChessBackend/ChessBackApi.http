@@ -1,0 +1,6 @@
+@ChessBackApi_HostAddress = http://localhost:5183
+
+GET {{ChessBackApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
