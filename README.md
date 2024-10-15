@@ -29,11 +29,11 @@
 
 | Welcome | Login | Signup |
 | ------- | ----- | ------ |
-| <img src="https://github.com/user-attachments/assets/6801f58f-5b5d-4976-bc7e-e319bcc18687" width="200" height="422"> | <img src="https://github.com/user-attachments/assets/4a90d371-4b11-4e5a-8dc0-72d4113b16cf" width="200" height="422"> | <img src="https://github.com/user-attachments/assets/d02381e5-b635-42ec-9382-36ccf3b20580" width="200" height="422"> |
+| <img src="https://github.com/user-attachments/assets/50d8b137-72d2-4339-8d40-a6d5d894ca4e" width="200" height="422"> | <img src="https://github.com/user-attachments/assets/183c5e9b-737c-4088-9597-6d4f25a559e5" width="200" height="422"> | <img src="https://github.com/user-attachments/assets/283062f8-1cbe-48d5-9364-d3e733040429" width="200" height="422"> |
 
 | Puzzles | Pieces | Leaderboard | Feedback |
 | ------- | ------ | ---------- | -------- |
-| <img src="https://github.com/user-attachments/assets/8728090f-76c1-4e5d-b944-70bab6d9de86" width="200" height="422"> | <img src="https://github.com/user-attachments/assets/e375f860-744f-4f81-9cbf-4b5fd668a1f3" width="200" height="422"> | <img src="https://github.com/user-attachments/assets/90e32240-dd7b-4d65-9b42-2c7443bd0e2f" width="200" height="422"> | <img src="https://github.com/user-attachments/assets/e001a85a-bd9b-4011-9be4-b168d44d9cad" width="200" height="422"> |
+| <img src="https://github.com/user-attachments/assets/0fdd8d0e-3b26-4e96-a23d-0459e35d8b2b" width="200" height="422"> | <img src="https://github.com/user-attachments/assets/d9d2ab45-f4e6-40c3-8c80-e7163e2ac2ef" width="200" height="422"> | <img src="https://github.com/user-attachments/assets/9ed6e01d-63a4-46d2-8419-5eb7cd88a3f0" width="200" height="422"> | <img src="https://github.com/user-attachments/assets/160e07db-2a19-41ff-a0ee-7af24d951e6e" width="200" height="422"> |
 
 
 ## References
