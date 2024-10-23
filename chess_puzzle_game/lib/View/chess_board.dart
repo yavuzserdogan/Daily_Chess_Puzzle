@@ -186,6 +186,8 @@ class _ChessBoardState extends State<ChessBoard> {
   void _initializeBoard(String fen) {
     List<String> rows = fen.split(' ')[0].split('/');
     piecePositions = [];
+    List<List<ChessPiece?>> newBoard =
+        List.generate(8, (_) => List.filled(8, null));
 
     Map<String, int> whitePieceCounter = {
       'pawn': 1,
@@ -238,7 +240,7 @@ class _ChessBoardState extends State<ChessBoard> {
               pieceName = type.name;
             } else {
               pieceName = '${type.name}${whitePieceCounter[type.name]}';
-              whitePieceCounter[type.name] = whitePieceCounter[type.name]!;
+              whitePieceCounter[type.name] = whitePieceCounter[type.name]! + 1;
             }
             piecePositions.add(['w', pieceName, row, col]);
           } else {
@@ -247,7 +249,7 @@ class _ChessBoardState extends State<ChessBoard> {
               pieceName = type.name;
             } else {
               pieceName = '${type.name}${blackPieceCounter[type.name]}';
-              blackPieceCounter[type.name] = blackPieceCounter[type.name]!;
+              blackPieceCounter[type.name] = blackPieceCounter[type.name]! + 1;
             }
             piecePositions.add(['b', pieceName, row, col]);
           }
@@ -300,9 +302,9 @@ class _ChessBoardState extends State<ChessBoard> {
               imagePath: 'images/queen.png');
           pieceName = 'queen';
           otoMove = true;
-        } else if (rowDiff.abs() == 1 && colDiff == 0) {
+        } else if (rowDiff.abs() == 1 && colDiff == 0 && board[nextRow][nextCol] ==null ) {
           otoMove = true;
-        } else if (rowDiff.abs() == 2 && colDiff == 0) {
+        } else if (rowDiff.abs() == 2 && colDiff == 0 && board[nextRow][nextCol] ==null) {
           otoMove = true;
         } else if ((rowDiff.abs() == 1 && colDiff.abs() == 1)) {
           otoMove = true;
@@ -561,8 +563,17 @@ class _ChessBoardState extends State<ChessBoard> {
         blackKingPosition = [newRow, newCol];
       }
     }
+
+    if(board[newRow][newCol]!=null){
+      for(int i= 0;i<selectedGroup.length;i++){
+        if(selectedGroup[i][2]==newRow && selectedGroup[i][3]==newCol){
+          selectedGroup.removeAt(i);
+        }
+      }
+    }
     board[newRow][newCol] = selectedPiece;
     board[selectedRow][selectedCol] = null;
+    
 
     setState(() {
       selectedPiece = null;
@@ -671,10 +682,14 @@ class _ChessBoardState extends State<ChessBoard> {
           matchedPieces.add(pos);
         }
       }
-
+      for (var piece in matchedPieces) {
+        if (piece[1] is String && piece[1].toString().startsWith('pawn')) {
+          piece[1] = piece[1].substring(0, piece[1].length - 1);
+        }
+      }
       for (int i = 0; i < matchedPieces.length; i++) {
         var correct = otoComputerMoves(
-            correctPieceType,
+            matchedPieces[i][1],
             matchedPieces[i][2],
             matchedPieces[i][3],
             correctMovesCoordinates[currentMoveIndex][1],
@@ -858,7 +873,6 @@ class _ChessBoardState extends State<ChessBoard> {
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(
                     vertical: 10.0, horizontal: 30.0),
-                //backgroundColor: isButtonDisabled ? Colors.red : Colors.blue,
                 backgroundColor: Colors.blue,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),
