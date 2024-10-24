@@ -287,8 +287,7 @@ class _ChessBoardState extends State<ChessBoard> {
     });
   }
 
-  bool otoComputerMoves(String pieceName, int currentRow, int currentCol,
-      int nextRow, int nextCol) {
+  bool otoComputerMoves(String pieceName, int currentRow, int currentCol, int nextRow, int nextCol) {
     bool otoMove = false;
     int rowDiff = nextRow - currentRow;
     int colDiff = nextCol - currentCol;
@@ -675,6 +674,7 @@ class _ChessBoardState extends State<ChessBoard> {
       }
 
       String correctPieceType = correctMovesCoordinates[currentMoveIndex][0];
+
       for (var pos in selectedGroup) {
         String positionPieceType = pos[1];
         if (correctPieceType.substring(0, 3) ==
@@ -682,8 +682,9 @@ class _ChessBoardState extends State<ChessBoard> {
           matchedPieces.add(pos);
         }
       }
+
       for (var piece in matchedPieces) {
-        if (piece[1] is String && piece[1].toString().startsWith('pawn')) {
+        if (piece[1] is String && (piece[1].toString().startsWith('pawn') || piece[1].toString().startsWith('rook') || piece[1].toString().startsWith('knight') || piece[1].toString().startsWith('bishop'))) {
           piece[1] = piece[1].substring(0, piece[1].length - 1);
         }
       }
@@ -694,6 +695,7 @@ class _ChessBoardState extends State<ChessBoard> {
             matchedPieces[i][3],
             correctMovesCoordinates[currentMoveIndex][1],
             correctMovesCoordinates[currentMoveIndex][2]);
+
         if (correct) {
           otoMovePiece(
               matchedPieces[i][2],
