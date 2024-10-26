@@ -189,19 +189,6 @@ class _ChessBoardState extends State<ChessBoard> {
     List<List<ChessPiece?>> newBoard =
         List.generate(8, (_) => List.filled(8, null));
 
-    Map<String, int> whitePieceCounter = {
-      'pawn': 1,
-      'rook': 1,
-      'knight': 1,
-      'bishop': 1,
-    };
-    Map<String, int> blackPieceCounter = {
-      'pawn': 1,
-      'rook': 1,
-      'knight': 1,
-      'bishop': 1,
-    };
-
     for (int row = 0; row < 8; row++) {
       int col = 0;
       for (int i = 0; i < rows[row].length; i++) {
@@ -235,22 +222,10 @@ class _ChessBoardState extends State<ChessBoard> {
           }
 
           if (isWhite) {
-            String pieceName;
-            if (type == ChessPiecesType.king || type == ChessPiecesType.queen) {
-              pieceName = type.name;
-            } else {
-              pieceName = '${type.name}${whitePieceCounter[type.name]}';
-              whitePieceCounter[type.name] = whitePieceCounter[type.name]! + 1;
-            }
+            String pieceName = type.name;
             piecePositions.add(['w', pieceName, row, col]);
           } else {
-            String pieceName;
-            if (type == ChessPiecesType.king || type == ChessPiecesType.queen) {
-              pieceName = type.name;
-            } else {
-              pieceName = '${type.name}${blackPieceCounter[type.name]}';
-              blackPieceCounter[type.name] = blackPieceCounter[type.name]! + 1;
-            }
+            String pieceName = type.name;
             piecePositions.add(['b', pieceName, row, col]);
           }
           newBoard[row][col] = ChessPiece(
@@ -590,7 +565,7 @@ class _ChessBoardState extends State<ChessBoard> {
         convertMovesToCoordinates(correctMoves);
 
     ListEquality equality = const ListEquality();
-
+    
     if (currentMoveIndex < correctMovesCoordinates.length &&
         equality.equals(moveHistory[moveHistory.length - 1],
             correctMovesCoordinates[currentMoveIndex])) {
@@ -674,18 +649,11 @@ class _ChessBoardState extends State<ChessBoard> {
       }
 
       String correctPieceType = correctMovesCoordinates[currentMoveIndex][0];
-
       for (var pos in selectedGroup) {
         String positionPieceType = pos[1];
         if (correctPieceType.substring(0, 3) ==
             positionPieceType.substring(0, 3)) {
           matchedPieces.add(pos);
-        }
-      }
-
-      for (var piece in matchedPieces) {
-        if (piece[1] is String && (piece[1].toString().startsWith('pawn') || piece[1].toString().startsWith('rook') || piece[1].toString().startsWith('knight') || piece[1].toString().startsWith('bishop'))) {
-          piece[1] = piece[1].substring(0, piece[1].length - 1);
         }
       }
       for (int i = 0; i < matchedPieces.length; i++) {
@@ -714,6 +682,7 @@ class _ChessBoardState extends State<ChessBoard> {
           currentMoveIndex++;
           isWhiteTurn = !isWhiteTurn;
           matchedPieces.clear();
+          selectedGroup.clear();
           break;
         }
       }
